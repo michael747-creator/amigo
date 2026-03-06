@@ -1,270 +1,402 @@
-v<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIGO DELIVERY - Fast & Reliable Delivery in Nigeria</title>
+    <title>AMIGO DELIVERY - Worldwide Express Delivery to Every Country</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary: #007bff;
-            --primary-dark: #0056b3;
-            --orange: #ff6600;
-            --dark: #333;
+            --primary: #0066cc;
+            --primary-dark: #004080;
+            --accent: #ff6600;
+            --dark: #1a1a1a;
+            --gray: #555;
             --light: #f8f9fa;
-            --gray: #6c757d;
+            --success: #28a745;
         }
+
         * { box-sizing: border-box; margin:0; padding:0; }
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background: var(--light);
         }
+
         .top-bar {
-            background: #000;
+            background: var(--dark);
             color: white;
             text-align: center;
-            padding: 0.6rem;
+            padding: 0.7rem;
             font-size: 0.95rem;
         }
+
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
+
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 1rem 1.2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
-            font-size: 1.9rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: white;
             text-decoration: none;
         }
-        .logo span { color: var(--orange); }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
         .nav-links a {
             color: white;
             text-decoration: none;
-            margin-left: 2rem;
             font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.25s;
         }
-        .nav-links a:hover { color: var(--orange); }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
+
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 130px 20px;
+            padding: 9rem 1.2rem 7rem;
         }
-        .hero h1 { font-size: 3.8rem; margin-bottom: 1.2rem; }
-        .hero p { font-size: 1.5rem; max-width: 800px; margin: 0 auto 2.5rem; }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 7vw, 3.6rem);
+            margin-bottom: 1.3rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 4vw, 1.45rem);
+            max-width: 720px;
+            margin: 0 auto 2.2rem;
+            opacity: 0.95;
+        }
+
         .btn {
-            padding: 14px 36px;
-            background: var(--orange);
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--accent);
             color: white;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.15rem;
-            margin: 0 12px;
-            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0.6rem;
+            transition: all 0.28s ease;
+            box-shadow: 0 4px 12px rgba(255,102,0,0.25);
         }
-        .btn:hover { background: #e65c00; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,102,0,0.3); }
-        .btn-outline { background: transparent; border: 2px solid white; }
+
+        .btn:hover {
+            background: #e65c00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,102,0,0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
         .btn-outline:hover { background: white; color: var(--primary); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-        .section-title { text-align: center; font-size: 2.6rem; margin-bottom: 3rem; color: var(--primary); }
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 3.5rem 1.2rem;
         }
-        .review-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+        .section-title {
             text-align: center;
+            font-size: clamp(1.9rem, 5vw, 2.5rem);
+            margin-bottom: 2.8rem;
+            color: var(--primary);
+            font-weight: 700;
         }
-        .stars { color: #f39c12; font-size: 1.4rem; margin-bottom: 1rem; }
-        .review-card img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 4px solid var(--light);
-        }
-        .review-card p { font-style: italic; color: #555; margin: 1rem 0; }
-        .review-card h4 { margin-top: 1rem; color: var(--primary); }
+
         .tracking-section {
             background: white;
-            padding: 3.5rem;
+            padding: 2.8rem 1.8rem;
             border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin: 4rem 0;
+            box-shadow: 0 8px 35px rgba(0,0,0,0.09);
+            margin: 2.5rem 0 4rem;
         }
-        form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 600px; margin: 2rem auto; }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            max-width: 580px;
+            margin: 0 auto 2rem;
+        }
+
         input, button {
-            padding: 14px;
+            padding: 1rem 1.3rem;
             font-size: 1.1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 10px;
+            border: 1px solid #d0d0d0;
         }
+
         button {
             background: var(--primary);
             color: white;
             border: none;
+            font-weight: 700;
             cursor: pointer;
-            font-weight: bold;
+            transition: background 0.25s;
         }
+
         button:hover { background: var(--primary-dark); }
-        #map { height: 480px; border-radius: 12px; margin-top: 2rem; }
+
+        #tracking-info { margin: 1.5rem 0; }
+
+        #map { height: 420px; border-radius: 12px; background: #e9ecef; }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+
+        .review-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.1rem;
+            border: 3px solid var(--light);
+        }
+
+        .stars { color: #f39c12; font-size: 1.35rem; margin-bottom: 0.9rem; }
+
+        .review-card p { font-style: italic; color: #444; margin: 1rem 0; }
+
+        .review-card h4 { color: var(--primary); margin-top: 0.8rem; }
+
         .whatsapp-float {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 65px;
-            height: 65px;
+            bottom: 25px;
+            right: 25px;
+            width: 64px;
+            height: 64px;
             background: #25D366;
             color: white;
             border-radius: 50%;
-            font-size: 32px;
+            font-size: 2.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
             z-index: 999;
-            transition: transform 0.3s;
+            transition: transform 0.25s;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
+
+        .whatsapp-float:hover { transform: scale(1.12); }
+
         footer {
             background: var(--dark);
-            color: white;
+            color: #ddd;
             text-align: center;
-            padding: 4rem 1rem 2rem;
+            padding: 3rem 1rem 1.5rem;
+            font-size: 0.95rem;
         }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .nav-links a { margin-left: 1rem; font-size: 0.95rem; }
+
+        footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 820px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                padding: 1.5rem;
+                gap: 1.4rem;
+            }
+
+            .nav-links.active { display: flex; }
+
+            .hamburger { display: block; }
+
+            .hero { padding: 7rem 1rem 5rem; }
+
+            .btn { padding: 0.85rem 1.8rem; font-size: 1.05rem; }
+
+            form { max-width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.3rem; }
+            .hero p { font-size: 1.15rem; }
+            .tracking-section { padding: 2rem 1.2rem; }
+            #map { height: 340px; }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        Nationwide Delivery • Super Fast • Super Secure • Call/WhatsApp: 07040329721
+        Worldwide Delivery • 200+ Countries • Express & Secure • Call/WhatsApp: 0704 032 9721
     </div>
 
     <header>
         <nav>
             <a href="#" class="logo">AMIGO <span>DELIVERY</span></a>
-            <div class="nav-links">
+
+            <div class="nav-links" id="navMenu">
                 <a href="#track">Track</a>
                 <a href="#reviews">Reviews</a>
                 <a href="https://wa.me/2347040329721?text=Hello%20Amigo%20Delivery">Contact</a>
+            </div>
+
+            <div class="hamburger" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Your Package, Our Priority</h1>
-        <p>Fast, affordable, and fully trackable delivery services across Lagos, Nigeria, and beyond.</p>
-        <a href="#track" class="btn">Track Package Now</a>
-        <a href="https://wa.me/2347040329721?text=I%20want%20to%20send%20a%20package" target="_blank" class="btn btn-outline">Request Delivery</a>
+        <h1>Global Delivery, Done Right</h1>
+        <p>Fast, reliable, and fully trackable express shipping to every country worldwide — from documents to parcels, we deliver across borders with ease.</p>
+        <a href="#track" class="btn">Track Your Shipment</a>
+        <a href="https://wa.me/2347040329721?text=I%20want%20to%20send%20a%20package%20internationally" target="_blank" class="btn btn-outline">Get a Quote</a>
     </section>
 
     <div class="container">
 
         <section id="track" class="tracking-section">
-            <h2 class="section-title">Track Your Package in Real-Time</h2>
+            <h2 class="section-title">Real-Time Global Tracking</h2>
             <form id="user-form">
-                <input type="text" id="tracking-code" placeholder="Enter Tracking Number (e.g. AMGABC123XY)" required>
+                <input type="text" id="tracking-code" placeholder="Enter Tracking Number (e.g. AMG1234567890)" required>
                 <button type="submit">Track Now</button>
             </form>
-            <div id="tracking-info" style="margin: 2rem 0;"></div>
+
+            <div id="tracking-info"></div>
             <div id="map"></div>
         </section>
 
         <section id="reviews">
-            <h2 class="section-title">What Our Customers Say</h2>
+            <h2 class="section-title">What Our Global Customers Say</h2>
             <div class="reviews-grid">
-
                 <div class="review-card">
-                    <img src="https://c8.alamy.com/comp/2GJKE5N/african-lady-receiving-a-package-from-a-delivery-worker-signing-the-manifest-2GJKE5N.jpg" alt="Happy customer">
+                    <img src="https://c8.alamy.com/comp/2GJKE5N/african-lady-receiving-a-package-from-a-delivery-worker-signing-the-manifest-2GJKE5N.jpg" alt="Customer">
                     <div class="stars">★★★★★</div>
-                    <p>"My package arrived same day in perfect condition. The driver was very polite and professional. Best delivery service in Lagos!"</p>
-                    <h4>— Chioma O., Ikeja</h4>
+                    <p>Package from London to New York arrived in 2 days — perfect condition and excellent tracking. Highly recommend!</p>
+                    <h4>— Sarah K., London, UK</h4>
                 </div>
 
                 <div class="review-card">
-                    <img src="https://c8.alamy.com/comp/2F5056D/happy-businesswoman-receiving-packages-from-courier-in-office-2F5056D.jpg" alt="Smiling recipient">
+                    <img src="https://c8.alamy.com/comp/2F5056D/happy-businesswoman-receiving-packages-from-courier-in-office-2F5056D.jpg" alt="Customer">
                     <div class="stars">★★★★★</div>
-                    <p>"I’ve used Amigo Delivery 5 times now — always on time, great communication, and real-time tracking works perfectly. Highly recommend!"</p>
-                    <h4>— Tunde A., Lekki</h4>
+                    <p>Sent documents from Tokyo to Sydney — super fast, great communication, and real-time updates worked flawlessly.</p>
+                    <h4>— Hiroshi T., Tokyo, Japan</h4>
                 </div>
 
                 <div class="review-card">
-                    <img src="https://c8.alamy.com/comp/2CC5ENA/young-african-female-receiving-a-parcel-from-a-delivery-service-worker-2CC5ENA.jpg" alt="Door delivery">
+                    <img src="https://c8.alamy.com/comp/2CC5ENA/young-african-female-receiving-a-parcel-from-a-delivery-service-worker-2CC5ENA.jpg" alt="Customer">
                     <div class="stars">★★★★★</div>
-                    <p>"From Abuja to Lagos — my fragile items arrived safely and faster than expected. Customer service via WhatsApp was excellent too."</p>
-                    <h4>— Fatima B., Abuja</h4>
+                    <p>Fragile electronics from Berlin to Dubai arrived safely and ahead of schedule. Best international service I've used.</p>
+                    <h4>— Anna M., Berlin, Germany</h4>
                 </div>
 
                 <div class="review-card">
-                    <img src="https://thumbs.dreamstime.com/b/happy-woman-handshake-delivery-man-box-ecommerce-customer-appreciation-respect-courier-person-consumer-shaking-hands-325424644.jpg" alt="Handshake">
+                    <img src="https://thumbs.dreamstime.com/b/happy-woman-handshake-delivery-man-box-ecommerce-customer-appreciation-respect-courier-person-consumer-shaking-hands-325424644.jpg" alt="Customer">
                     <div class="stars">★★★★★</div>
-                    <p>"Reliable, affordable, and friendly. The tracking map gave me peace of mind. Will definitely use again!"</p>
-                    <h4>— Emeka N., Port Harcourt</h4>
+                    <p>Affordable rates for USA to Canada shipments. The live map tracking gave complete peace of mind every time.</p>
+                    <h4>— Michael R., New York, USA</h4>
                 </div>
-
             </div>
         </section>
 
     </div>
 
-    <!-- Floating WhatsApp Customer Care -->
-    <a href="https://wa.me/2347040329721?text=Hello%20Amigo%20Delivery%2C%20I%20need%20help%20with%20my%20tracking" target="_blank" class="whatsapp-float">
+    <!-- Floating WhatsApp Customer Care with your number -->
+    <a href="https://wa.me/2347040329721?text=Hello%20Amigo%20Delivery%2C%20I%20need%20help%20with%20my%20shipment" target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <footer>
-        <p>© 2026 AMIGO DELIVERY. All rights reserved. • Trusted by thousands across Nigeria</p>
+        <p>© 2026 AMIGO DELIVERY GLOBAL. All rights reserved.<br>
+        Delivering to 200+ countries • Trusted worldwide • <a href="https://wa.me/2347040329721">Support (WhatsApp)</a> • <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></p>
     </footer>
 
-    <!-- Google Maps - REPLACE YOUR_API_KEY -->
+    <!-- Google Maps - Replace YOUR_API_KEY with real key from Google Cloud Console -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 
     <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Map & tracking logic
         let map, markers = [], polyline;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 6.5244, lng: 3.3792 },
-                zoom: 11
+                center: { lat: 0, lng: 0 },  // World center
+                zoom: 2,
+                styles: [{featureType:"poi",elementType:"labels",stylers:[{visibility:"off"}]}]
             });
             polyline = new google.maps.Polyline({
                 geodesic: true,
-                strokeColor: '#007bff',
-                strokeOpacity: 1.0,
-                strokeWeight: 4,
+                strokeColor: "#0066cc",
+                strokeOpacity: 0.9,
+                strokeWeight: 5,
                 map: map
             });
         }
 
-        const STORAGE_KEY = 'amigo_deliveries';
-        function getDeliveries() { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+        const STORAGE_KEY = 'amigo_global_deliveries';
+        function getDeliveries() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        }
 
         document.getElementById('user-form').addEventListener('submit', e => {
             e.preventDefault();
@@ -279,7 +411,7 @@ v<!DOCTYPE html>
             polyline.setPath([]);
 
             if (!pkg || !pkg.updates?.length) {
-                info.innerHTML = '<p style="text-align:center; color:#dc3545; font-size:1.2rem;">No package found or no updates yet. Please check the tracking number.</p>';
+                info.innerHTML = '<p style="text-align:center; color:#dc3545; font-size:1.25rem; padding:1.5rem;">Invalid tracking number or no updates available.<br>Please check and try again.</p>';
                 return;
             }
 
@@ -289,12 +421,12 @@ v<!DOCTYPE html>
 
             pkg.updates.forEach((u, i) => {
                 const item = document.createElement('div');
-                item.style = 'background:#f8f9fa; padding:1.5rem; margin:1rem 0; border-radius:8px; border-left:5px solid #007bff;';
+                item.style = 'background:#f0f4ff; padding:1.4rem; margin:1.2rem 0; border-radius:10px; border-left:5px solid var(--primary);';
                 item.innerHTML = `
-                    <strong style="font-size:1.3rem;">${u.status}</strong><br>
-                    <small>${u.date}</small><br>
+                    <strong style="font-size:1.3rem; color:var(--primary);">${u.status}</strong><br>
+                    <small style="color:#666;">${u.date}</small><br>
                     <strong>Location:</strong> ${u.location}
-                    \( {u.image ? `<br><img src=" \){u.image}" style="max-width:100%; margin-top:12px; border-radius:8px;">` : ''}
+                    \( {u.image ? `<br><img src=" \){u.image}" style="max-width:100%; margin-top:0.9rem; border-radius:8px;">` : ''}
                 `;
                 timeline.appendChild(item);
 
@@ -317,7 +449,7 @@ v<!DOCTYPE html>
 
             info.appendChild(timeline);
 
-            if (path.length) {
+            if (path.length > 0) {
                 polyline.setPath(path);
                 const bounds = new google.maps.LatLngBounds();
                 path.forEach(p => bounds.extend(p));
